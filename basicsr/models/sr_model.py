@@ -201,6 +201,7 @@ class SRModel(BaseModel):
 
         for idx, val_data in enumerate(dataloader):
             img_name = osp.splitext(osp.basename(val_data['lq_path'][0]))[0]
+            print(img_name)
             self.feed_data(val_data)
             self.test()
 
@@ -226,8 +227,10 @@ class SRModel(BaseModel):
                         save_img_path = osp.join(self.opt['path']['visualization'], dataset_name,
                                                  f'{img_name}_{self.opt["val"]["suffix"]}.png')
                     else:
+                        # save_img_path = osp.join(self.opt['path']['visualization'], dataset_name,
+                        #                          f'{img_name}_{self.opt["name"]}.png')
                         save_img_path = osp.join(self.opt['path']['visualization'], dataset_name,
-                                                 f'{img_name}_{self.opt["name"]}.png')
+                                                 f'{img_name}.png')
                 imwrite(sr_img, save_img_path)
 
             if with_metrics:
